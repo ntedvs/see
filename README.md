@@ -1,0 +1,3 @@
+# Social Enterprise Ethiopia
+
+Social Enterprise Ethiopia (SEE) is a not-for-profit membership organization founded in 2018 serving as Ethiopia's national body for social enterprises. With 250+ members, SEE has impacted 15.8 million Ethiopians through their motto "We Impact We Profit!" The organization builds an inclusive ecosystem via networking, capacity building, and policy advocacy. Their three-year strategy focuses on policy development, impact measurement, and financial sustainability. SEE provides consulting, training, and networking opportunities while advocating with policymakers to create enabling environments for social enterprises to flourish.
