@@ -22,8 +22,8 @@ export default function Home() {
           </h1>
           <p className="mb-8 max-w-3xl text-xl text-white md:text-2xl">
             Social Enterprise Ethiopia is the sole membership association for
-            Ethiopia's social enterprise sector, serving a diverse community of
-            social entrepreneurs and ecosystem supporters.
+            Ethiopia&apos;s social enterprise sector, serving a diverse
+            community of social entrepreneurs and ecosystem supporters.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
@@ -64,21 +64,21 @@ export default function Home() {
               </h2>
 
               <p className="mb-6 text-lg text-foreground/80">
-                Social Enterprise Ethiopia (SEE), founded in 2018, is Ethiopia's
-                national social enterprise body with 250+ members. This
-                not-for-profit membership organization builds an inclusive
-                ecosystem through critical thinking and thought leadership. SEE
-                supports innovative solutions addressing societal,
-                environmental, and economic challenges, collectively impacting
-                15.8 million Ethiopians.
+                Social Enterprise Ethiopia (SEE), founded in 2018, is
+                Ethiopia&apos;s national social enterprise body with 250+
+                members. This not-for-profit membership organization builds an
+                inclusive ecosystem through critical thinking and thought
+                leadership. SEE supports innovative solutions addressing
+                societal, environmental, and economic challenges, collectively
+                impacting 15.8 million Ethiopians.
               </p>
 
               <p className="text-lg text-foreground/80">
                 We provide experience-sharing, awareness-raising, and
                 capacity-building platforms for members and the public,
                 supporting both existing and emerging social enterprises that
-                deliver social value while growing profitably. Our motto: "We
-                Impact We Profit!"
+                deliver social value while growing profitably. Our motto:
+                &quot;We Impact We Profit!&quot;
               </p>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Home() {
               Our Strategy
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-foreground/80">
-              We focus on three key pillars to strengthen Ethiopia's social
+              We focus on three key pillars to strengthen Ethiopia&apos;s social
               enterprise ecosystem and create sustainable impact across
               communities.
             </p>
@@ -162,7 +162,7 @@ export default function Home() {
                 Our Mission
               </h3>
               <p className="leading-relaxed text-foreground/80">
-                To strengthen Ethiopia's social enterprise ecosystem by
+                To strengthen Ethiopia&apos;s social enterprise ecosystem by
                 providing advocacy, capacity building, networking, and knowledge
                 sharing opportunities that enable social enterprises to create
                 sustainable impact in their communities.
@@ -208,8 +208,8 @@ export default function Home() {
                 Membership Benefits
               </h2>
               <p className="mb-6 text-lg leading-relaxed text-white/90">
-                Advocate for new "social enterprise" registration with tax
-                incentives and bid preferences. Represent members to
+                Advocate for new &quot;social enterprise&quot; registration with
+                tax incentives and bid preferences. Represent members to
                 policymakers, funders, and private sector partners.
               </p>
               <p className="mb-6 text-lg leading-relaxed text-white/90">
@@ -266,14 +266,14 @@ export default function Home() {
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-foreground/80">
               We collaborate with leading organizations, government agencies,
-              and development partners to strengthen Ethiopia's social
+              and development partners to strengthen Ethiopia&apos;s social
               enterprise ecosystem and create lasting impact.
             </p>
           </div>
         </div>
 
         {/* Partner Logos Marquee */}
-        <Marquee className="py-8" />
+        <Marquee />
       </section>
     </>
   )

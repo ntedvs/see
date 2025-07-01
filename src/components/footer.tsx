@@ -33,7 +33,7 @@ export default function Footer() {
             </div>
 
             <p className="leading-relaxed text-gray-300">
-              Ethiopia's national membership organization dedicated to
+              Ethiopia&apos;s national membership organization dedicated to
               supporting and advancing the social enterprise sector across the
               country.
             </p>
