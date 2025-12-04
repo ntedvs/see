@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Social Enterprise Ethiopia"
                 width={50}
                 height={50}
@@ -114,7 +114,7 @@ export default function Footer() {
             <p className="mb-0 text-sm text-gray-400">
               Made by{" "}
               <Link
-                href="https://github.com/ntedvs"
+                href="https://briggsdavis.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:underline"

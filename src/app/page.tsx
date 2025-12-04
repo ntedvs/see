@@ -9,7 +9,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex h-screen items-center justify-center">
         <Image
-          src="/hero.jpg"
+          src="/hero.webp"
           alt="Social Enterprise Ethiopia Hero"
           fill
           className="object-cover"
@@ -49,7 +49,7 @@ export default function Home() {
             {/* Image */}
             <div className="order-2 lg:order-1">
               <Image
-                src="/table.jpg"
+                src="/table.webp"
                 alt="Social Enterprise Ethiopia Team"
                 width={600}
                 height={400}
@@ -234,7 +234,7 @@ export default function Home() {
             <div className="relative h-[500px] lg:h-[600px]">
               <div className="relative aspect-[3/4] h-full w-full">
                 <Image
-                  src="/benefits.jpg"
+                  src="/benefits.webp"
                   alt="Social Enterprise Ethiopia Members"
                   fill
                   className="rounded-lg object-cover"

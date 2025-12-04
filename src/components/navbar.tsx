@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="Social Enterprise Ethiopia"
               width={50}
               height={50}

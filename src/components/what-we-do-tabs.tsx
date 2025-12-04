@@ -9,7 +9,7 @@ export default function WhatWeDoTabs() {
   const tabs = [
     {
       name: "Connect",
-      image: "/tabs/connect.jpg",
+      image: "/tabs/connect.webp",
       content: {
         title: "Connect",
         points: [
@@ -22,7 +22,7 @@ export default function WhatWeDoTabs() {
     },
     {
       name: "Promote",
-      image: "/tabs/promote.jpg",
+      image: "/tabs/promote.webp",
       content: {
         title: "Promote",
         points: [
@@ -35,7 +35,7 @@ export default function WhatWeDoTabs() {
     },
     {
       name: "Empower",
-      image: "/tabs/empower.jpg",
+      image: "/tabs/empower.webp",
       content: {
         title: "Empower",
         points: [
@@ -48,7 +48,7 @@ export default function WhatWeDoTabs() {
     },
     {
       name: "Advocate",
-      image: "/tabs/advocate.jpg",
+      image: "/tabs/advocate.webp",
       content: {
         title: "Advocate",
         points: [
