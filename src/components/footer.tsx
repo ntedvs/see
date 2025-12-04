@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/programs", label: "Programs" },
   { href: "/resources", label: "Resources" },
   { href: "/donate", label: "Donate" },
-  { href: "/join", label: "Join" },
+  { href: "https://docs.google.com/forms/d/e/1FAIpQLSfoLRcoa6JJs2vJDrY8-CjsRnvMbaMq-TwJm-oGJD68vIv4rQ/viewform", label: "Join" },
 ]
 
 export default function Footer() {
@@ -74,6 +74,8 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="w-fit text-gray-300 transition-colors hover:text-white"
                 >
                   {link.label}

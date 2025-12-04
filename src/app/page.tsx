@@ -2,6 +2,7 @@ import CountUp from "@/components/count-up"
 import Marquee from "@/components/marquee"
 import WhatWeDoTabs from "@/components/what-we-do-tabs"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -26,18 +27,20 @@ export default function Home() {
             community of social entrepreneurs and ecosystem supporters.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="/join"
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfoLRcoa6JJs2vJDrY8-CjsRnvMbaMq-TwJm-oGJD68vIv4rQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center rounded-lg bg-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-primary/90"
             >
               Join Us
-            </a>
-            <a
+            </Link>
+            <Link
               href="/about"
               className="flex items-center justify-center rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-colors hover:bg-white/90"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -244,7 +247,7 @@ export default function Home() {
                 <div className="absolute bottom-4 left-4 rounded-lg bg-white p-4 shadow-lg">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary lg:text-3xl">
-                      <CountUp target={380} suffix="+" />
+                      <CountUp target={630} suffix="+" />
                     </div>
                     <div className="text-sm font-medium text-foreground/70">
                       Members

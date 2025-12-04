@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/programs", label: "Programs" },
   { href: "/resources", label: "Resources" },
   { href: "/donate", label: "Donate" },
-  { href: "/join", label: "Join" },
+  { href: "https://docs.google.com/forms/d/e/1FAIpQLSfoLRcoa6JJs2vJDrY8-CjsRnvMbaMq-TwJm-oGJD68vIv4rQ/viewform", label: "Join" },
 ]
 
 export default function Navbar() {
@@ -40,6 +40,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="font-medium text-foreground transition-colors hover:text-primary"
               >
                 {link.label}
@@ -65,6 +67,8 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="inline-block py-2 font-medium text-foreground transition-colors hover:text-primary w-fit"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
