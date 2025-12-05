@@ -86,10 +86,10 @@ export default function WhatWeDoTabs() {
           activeTab === tab.name && (
             <div
               key={tab.name}
-              className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2"
+              className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-2"
             >
               {/* Image */}
-              <div className="relative aspect-video w-full">
+              <div className="relative h-full w-full min-h-[350px]">
                 <Image
                   src={tab.image}
                   alt={`${tab.name} - Social Enterprise Ethiopia`}
@@ -99,7 +99,7 @@ export default function WhatWeDoTabs() {
               </div>
 
               {/* Content Card */}
-              <div className="rounded-lg border border-gray-100 bg-white p-8 shadow-sm">
+              <div className="h-full rounded-lg border border-gray-100 bg-white p-8 shadow-sm">
                 <h3 className="mb-6 text-2xl font-bold text-foreground">
                   {tab.content.title}
                 </h3>

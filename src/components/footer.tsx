@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 const navLinks = [
-  { href: "/about", label: "About" },
   { href: "/members", label: "Members" },
   { href: "/programs", label: "Programs" },
   { href: "/resources", label: "Resources" },

@@ -38,7 +38,7 @@ export default function Home() {
               Join Us
             </Link>
             <Link
-              href="/about"
+              href="#who-we-are"
               className="flex items-center justify-center rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-colors hover:bg-white/90"
             >
               Learn More
@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Who We Are Section */}
-      <section className="px-4 py-16">
+      <section id="who-we-are" className="px-4 py-16">
         <div className="container">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Image */}
