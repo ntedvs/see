@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Home() {
+  const members = 630
+
   return (
     <>
       {/* Hero Section */}
@@ -13,7 +15,7 @@ export default function Home() {
           src="/hero.webp"
           alt="Social Enterprise Ethiopia Hero"
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -68,7 +70,7 @@ export default function Home() {
 
               <p className="mb-6 text-lg text-foreground/80">
                 Social Enterprise Ethiopia (SEE), founded in 2018, is
-                Ethiopia&apos;s national social enterprise body with 250+
+                Ethiopia&apos;s national social enterprise body with {members}+
                 members. This not-for-profit membership organization builds an
                 inclusive ecosystem through critical thinking and thought
                 leadership. SEE supports innovative solutions addressing
@@ -235,7 +237,7 @@ export default function Home() {
 
             {/* Right Image with Overlay */}
             <div className="relative h-[500px] lg:h-[600px]">
-              <div className="relative aspect-[3/4] h-full w-full">
+              <div className="relative aspect-3/4 h-full w-full">
                 <Image
                   src="/benefits.webp"
                   alt="Social Enterprise Ethiopia Members"
@@ -247,7 +249,7 @@ export default function Home() {
                 <div className="absolute bottom-4 left-4 rounded-lg bg-white p-4 shadow-lg">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary lg:text-3xl">
-                      <CountUp target={630} suffix="+" />
+                      <CountUp target={members} suffix="+" />
                     </div>
                     <div className="text-sm font-medium text-foreground/70">
                       Members

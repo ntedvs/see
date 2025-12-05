@@ -89,7 +89,7 @@ export default function WhatWeDoTabs() {
               className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2"
             >
               {/* Image */}
-              <div className="relative aspect-[16/9] w-full">
+              <div className="relative aspect-video w-full">
                 <Image
                   src={tab.image}
                   alt={`${tab.name} - Social Enterprise Ethiopia`}
@@ -106,7 +106,7 @@ export default function WhatWeDoTabs() {
                 <ul className="space-y-4">
                   {tab.content.points.map((point, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mt-2 mr-3 block h-2 w-2 flex-shrink-0 rounded-full bg-primary"></span>
+                      <span className="mt-2 mr-3 block h-2 w-2 shrink-0 rounded-full bg-primary"></span>
                       <span className="text-foreground/80">{point}</span>
                     </li>
                   ))}

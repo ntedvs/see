@@ -9,11 +9,11 @@ interface CountUpProps {
   className?: string
 }
 
-export default function CountUp({ 
-  target, 
-  duration = 2000, 
-  suffix = "", 
-  className = "" 
+export default function CountUp({
+  target,
+  duration = 2000,
+  suffix = "",
+  className = "",
 }: CountUpProps) {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
@@ -29,8 +29,8 @@ export default function CountUp({
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-      }
+        rootMargin: "0px 0px -50px 0px",
+      },
     )
 
     if (elementRef.current) {
@@ -56,7 +56,9 @@ export default function CountUp({
 
         // Easing function for smooth animation
         const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-        const currentCount = Math.floor(startValue + (target - startValue) * easeOutQuart)
+        const currentCount = Math.floor(
+          startValue + (target - startValue) * easeOutQuart,
+        )
 
         setCount(currentCount)
 
@@ -73,7 +75,8 @@ export default function CountUp({
 
   return (
     <span ref={elementRef} className={className}>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   )
 }

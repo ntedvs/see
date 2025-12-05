@@ -2,8 +2,8 @@ import "@/styles/base.css"
 import { Metadata } from "next"
 import { Raleway } from "next/font/google"
 import { ReactNode } from "react"
-import Navbar from "../components/navbar"
 import Footer from "../components/footer"
+import Navbar from "../components/navbar"
 
 const raleway = Raleway({ subsets: ["latin"] })
 
@@ -23,7 +23,9 @@ export default function Layout({ children }: { children: ReactNode }) {
         <header>
           <Navbar />
         </header>
+
         <main className="grow">{children}</main>
+
         <Footer />
       </body>
     </html>
