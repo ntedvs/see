@@ -18,7 +18,7 @@ export default function Home() {
           className="object-cover object-top"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 px-4 text-center text-white">
           <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl">
             Social Enterprise Ethiopia
