@@ -1,5 +1,6 @@
 "use client"
 
+import { useReducedMotion } from "@/lib/use-reduced-motion"
 import Image from "next/image"
 import M from "react-fast-marquee"
 
@@ -31,18 +32,37 @@ const partnerLogos = [
 ]
 
 export default function Marquee() {
-  return (
-    <M speed={50}>
-      {partnerLogos.map((logo) => (
-        <Image
-          src={`/partners/${logo}`}
-          alt={`Partner ${logo}`}
-          width={150}
-          height={150}
-          className="mx-6 w-30"
-          key={logo}
-        />
-      ))}
+  const reducedMotion = useReducedMotion()
+  const logos = partnerLogos.map((logo) => (
+    <Image
+      src={`/partners/${logo}`}
+      alt={`Partner ${logo.replace(".webp", "")}`}
+      width={150}
+      height={150}
+      className="mx-5 h-24 w-28 shrink-0 object-contain"
+      key={logo}
+    />
+  ))
+
+  return reducedMotion ? (
+    <div
+      className="flex items-center overflow-x-auto"
+      role="region"
+      aria-label="Development partners"
+      tabIndex={0}
+    >
+      {logos}
+    </div>
+  ) : (
+    <M
+      speed={30}
+      pauseOnHover
+      pauseOnClick
+      gradient
+      gradientColor="white"
+      gradientWidth={48}
+    >
+      {logos}
     </M>
   )
 }

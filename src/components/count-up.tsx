@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useReducedMotion } from "@/lib/use-reduced-motion"
 
 interface CountUpProps {
   target: number
@@ -11,72 +12,49 @@ interface CountUpProps {
 
 export default function CountUp({
   target,
-  duration = 2000,
+  duration = 1200,
   suffix = "",
   className = "",
 }: CountUpProps) {
-  const [count, setCount] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const [hasAnimated, setHasAnimated] = useState(false)
-  const elementRef = useRef<HTMLSpanElement>(null)
+  const [count, setCount] = useState(target)
+  const ref = useRef<HTMLSpanElement>(null)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
+    if (reducedMotion || !ref.current || !("IntersectionObserver" in window))
+      return
+    let frame = 0
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setIsVisible(true)
+        if (!entry.isIntersecting) return
+        observer.disconnect()
+        const start = performance.now()
+        const animate = (now: number) => {
+          const progress = Math.min((now - start) / Math.max(duration, 1), 1)
+          setCount(Math.round(target * (1 - Math.pow(1 - progress, 3))))
+          if (progress < 1) frame = requestAnimationFrame(animate)
         }
+        frame = requestAnimationFrame(animate)
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      },
+      { threshold: 0.25 },
     )
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
-    }
-
+    observer.observe(ref.current)
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current)
-      }
+      observer.disconnect()
+      cancelAnimationFrame(frame)
     }
-  }, [hasAnimated])
-
-  useEffect(() => {
-    if (isVisible && !hasAnimated) {
-      setHasAnimated(true)
-      const startTime = performance.now()
-      const startValue = 0
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
-
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-        const currentCount = Math.floor(
-          startValue + (target - startValue) * easeOutQuart,
-        )
-
-        setCount(currentCount)
-
-        if (progress < 1) {
-          requestAnimationFrame(animate)
-        } else {
-          setCount(target)
-        }
-      }
-
-      requestAnimationFrame(animate)
-    }
-  }, [isVisible, hasAnimated, target, duration])
+  }, [target, duration, reducedMotion])
 
   return (
-    <span ref={elementRef} className={className}>
-      {count}
-      {suffix}
+    <span ref={ref} className={className}>
+      <span className="sr-only">
+        {target}
+        {suffix}
+      </span>
+      <span aria-hidden="true">
+        {reducedMotion ? target : count}
+        {suffix}
+      </span>
     </span>
   )
 }

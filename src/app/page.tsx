@@ -1,3 +1,11 @@
+import { objectives, values } from "@/lib/about"
+import SectionHeading from "@/components/ui/section-heading"
+import InfoCard from "@/components/ui/info-card"
+import Callout from "@/components/ui/callout"
+import Reveal from "@/components/ui/reveal"
+import AacoseCard from "@/components/aacose-card"
+import { getContentPage, sectionId } from "@/lib/content"
+import { contactUrl, membershipApplicationUrl } from "@/lib/site"
 import CountUp from "@/components/count-up"
 import Marquee from "@/components/marquee"
 import WhatWeDoTabs from "@/components/what-we-do-tabs"
@@ -5,12 +13,17 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Home() {
-  const members = 680
+  const members = 700
+  const programs = getContentPage("Our Programs").sections.slice(0, 3)
+  const membership = getContentPage("Membership")
+  const membershipTypes = membership.sections.find(
+    (section) => section.title === "Membership Types",
+  )!.subsections
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative flex h-screen items-center justify-center">
+      <section className="relative flex min-h-screen items-center justify-center py-14">
         <Image
           src="/hero.webp"
           alt="Social Enterprise Ethiopia Hero"
@@ -18,28 +31,31 @@ export default function Home() {
           className="object-cover object-top"
           priority
         />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 px-4 text-center text-white">
+        <div className="absolute inset-0 bg-primary/45" aria-hidden="true" />
+        <div className="site-container relative z-10 text-center text-white">
           <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl">
             Social Enterprise Ethiopia
           </h1>
-          <p className="mb-8 max-w-3xl text-xl text-white md:text-2xl">
+          <p className="mx-auto mb-8 max-w-3xl text-base leading-7 font-medium text-white sm:text-xl sm:leading-8">
             Social Enterprise Ethiopia is the sole membership association for
             Ethiopia&apos;s social enterprise sector, serving a diverse
             community of social entrepreneurs and ecosystem supporters.
           </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mx-auto max-w-5xl">
+            <AacoseCard variant="hero" />
+          </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfoLRcoa6JJs2vJDrY8-CjsRnvMbaMq-TwJm-oGJD68vIv4rQ/viewform"
+              href={membershipApplicationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center rounded-lg bg-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-primary/90"
+              className="btn-outline-light px-6 py-2.5"
             >
               Join Us
             </Link>
             <Link
               href="#who-we-are"
-              className="flex items-center justify-center rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-colors hover:bg-white/90"
+              className="flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white hover:underline"
             >
               Learn More
             </Link>
@@ -47,9 +63,35 @@ export default function Home() {
         </div>
       </section>
 
+      <section
+        aria-label="Our impact"
+        className="border-b border-line bg-surface py-8 sm:py-10"
+      >
+        <div className="site-container grid gap-7 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-line">
+          {[
+            { value: "2018", label: "Year founded" },
+            { value: `${members}+`, label: "Members" },
+            { value: "15.8 million", label: "Ethiopians impacted" },
+          ].map((stat, index) => (
+            <Reveal
+              key={stat.label}
+              delay={index * 60}
+              className="flex items-center justify-center gap-4 sm:px-4"
+            >
+              <div>
+                <p className="mb-1 text-3xl font-bold tracking-tight text-primary">
+                  {stat.value}
+                </p>
+                <p className="mb-0 text-sm text-foreground/65">{stat.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* Who We Are Section */}
-      <section id="who-we-are" className="px-4 py-16">
-        <div className="container">
+      <section id="who-we-are" className="scroll-mt-4 py-16 sm:py-20">
+        <div className="site-container">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Image */}
             <div className="order-2 lg:order-1">
@@ -58,15 +100,13 @@ export default function Home() {
                 alt="Social Enterprise Ethiopia Team"
                 width={600}
                 height={400}
-                className="h-auto w-full rounded-lg object-cover"
+                className="h-auto w-full rounded-2xl border border-line object-cover shadow-sm"
               />
             </div>
 
             {/* Content */}
             <div className="order-1 lg:order-2">
-              <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">
-                Who We Are
-              </h2>
+              <SectionHeading title="Who We Are" />
 
               <p className="mb-6 text-lg text-foreground/80">
                 Social Enterprise Ethiopia (SEE), founded in 2018, is
@@ -90,149 +130,106 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Strategy Section */}
-      <section className="bg-gray-100 px-4 py-16">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
-              Our Strategy
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-foreground/80">
-              We focus on three key pillars to strengthen Ethiopia&apos;s social
-              enterprise ecosystem and create sustainable impact across
-              communities.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {/* Policy Development Card */}
-            <div className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-4 text-xl font-semibold text-foreground">
-                Policy Development
-              </h3>
-              <p className="text-foreground/80">
-                We work with government agencies and stakeholders to develop
-                policies that support social enterprise growth and create an
-                enabling regulatory environment for sustainable impact.
-              </p>
-            </div>
-
-            {/* Impact Measurement Card */}
-            <div className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-4 text-xl font-semibold text-foreground">
-                Impact Measurement
-              </h3>
-              <p className="text-foreground/80">
-                We establish standardized frameworks and tools to measure and
-                report social impact, helping enterprises demonstrate their
-                value and attract investment for scaling their solutions.
-              </p>
-            </div>
-
-            {/* Financial Sustainability Card */}
-            <div className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-4 text-xl font-semibold text-foreground">
-                Financial Sustainability
-              </h3>
-              <p className="text-foreground/80">
-                We connect social enterprises with funding opportunities,
-                provide financial literacy training, and support the development
-                of sustainable business models that balance profit with purpose.
-              </p>
-            </div>
+      <section className="bg-surface py-16 sm:py-20">
+        <div className="site-container">
+          <SectionHeading
+            title="Our Strategy"
+            centered
+            description="We focus on three key pillars to strengthen Ethiopia's social enterprise ecosystem and create sustainable impact across communities."
+          />
+          <div className="grid gap-6 md:grid-cols-3">
+            {objectives.map((objective, index) => (
+              <Reveal key={objective.title} delay={index * 60}>
+                <InfoCard {...objective} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* What We Do Section */}
       <section className="px-4 py-16">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
-              What We Do
-            </h2>
-          </div>
+        <div className="site-container">
+          <SectionHeading title="What We Do" centered />
 
           <WhatWeDoTabs />
         </div>
       </section>
 
-      {/* Mission, Vision, Values Section */}
-      <section className="bg-gray-100 px-4 py-16">
-        <div className="container">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {/* Our Mission */}
-            <div className="rounded-lg bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-6 text-2xl font-bold text-foreground">
-                Our Mission
-              </h3>
-              <p className="leading-relaxed text-foreground/80">
-                To strengthen Ethiopia&apos;s social enterprise ecosystem by
-                providing advocacy, capacity building, networking, and knowledge
-                sharing opportunities that enable social enterprises to create
-                sustainable impact in their communities.
-              </p>
+      <section className="bg-surface py-16 sm:py-20">
+        <div className="site-container">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="mb-0 text-primary">Featured Programs</h2>
             </div>
+            <Link
+              href="/programs"
+              className="inline-flex items-center gap-2 font-semibold"
+            >
+              Explore All Programs
+            </Link>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {programs.map((program, index) => (
+              <Reveal key={program.title} delay={index * 60}>
+                <article
+                  key={program.title}
+                  className="card card-interactive flex h-full flex-col"
+                >
+                  <h3 className="text-xl text-primary">{program.title}</h3>
+                  <p className="grow text-foreground/80">
+                    {program.blocks[0].items[0]}
+                  </p>
+                  <Link
+                    href={`/programs#${sectionId(program.title)}`}
+                    className="inline-flex items-center gap-2 font-semibold"
+                  >
+                    Learn More
+                    <span className="sr-only"> about {program.title}</span>
+                  </Link>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Our Vision */}
-            <div className="rounded-lg bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-6 text-2xl font-bold text-foreground">
-                Our Vision
-              </h3>
-              <p className="leading-relaxed text-foreground/80">
-                A thriving social enterprise ecosystem in Ethiopia where
-                innovative solutions address societal challenges while
-                generating sustainable economic value and creating lasting
-                positive impact for all communities.
-              </p>
-            </div>
-
-            {/* Our Values */}
-            <div className="rounded-lg bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-6 text-2xl font-bold text-foreground">
-                Our Values
-              </h3>
-              <p className="leading-relaxed text-foreground/80">
-                Innovation, collaboration, integrity, and impact drive our work.
-                We believe in the power of social enterprises to create
-                meaningful change while maintaining financial sustainability and
-                ethical business practices.
-              </p>
-            </div>
+      <section className="py-16 sm:py-20">
+        <div className="site-container">
+          <SectionHeading title="Purpose at the heart of enterprise" centered />
+          <div className="grid gap-6 md:grid-cols-3">
+            {[values[1], values[0], values[2]].map((value, index) => (
+              <Reveal key={value.title} delay={index * 60}>
+                <InfoCard {...value} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Membership Benefits Section */}
-      <section className="relative overflow-hidden bg-primary px-4 py-16 text-white">
-        <div className="container">
+      <section className="relative overflow-hidden bg-primary py-16 text-white sm:py-20">
+        <div className="site-container">
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
             {/* Left Content */}
             <div className="lg:py-8">
-              <h2 className="mb-6 text-3xl font-bold text-white/90 lg:text-4xl">
+              <h2 className="mb-6 text-3xl font-bold text-white lg:text-4xl">
                 Membership Benefits
               </h2>
               <p className="mb-6 text-lg leading-relaxed text-white/90">
-                Advocate for new &quot;social enterprise&quot; registration with
-                tax incentives and bid preferences. Represent members to
-                policymakers, funders, and private sector partners.
+                {membership.blocks[0].items[0]}
               </p>
-              <p className="mb-6 text-lg leading-relaxed text-white/90">
-                Connect members to a supportive network of social enterprises,
-                advocates, and aligned organizations. Provide two hours of free
-                consultancy covering advice, information, and strategic support.
-              </p>
-              <p className="mb-6 text-lg leading-relaxed text-white/90">
-                Member-only training events and significantly reduced fees for
-                business capacity building programs. Bursaries and complimentary
-                event tickets available.
-              </p>
-              <p className="text-lg leading-relaxed text-white/90">
-                Free promotion through Social Enterprise of the Week feature and
-                business directory listing. Certification letters and support
-                for donor opportunities aligned with the social enterprise
-                model.
-              </p>
+              <div className="space-y-6">
+                {membershipTypes.map((type) => (
+                  <div key={type.title}>
+                    <h3 className="text-xl text-white">{type.title}</h3>
+                    <p className="text-white/85">{type.blocks[0].items[0]}</p>
+                  </div>
+                ))}
+              </div>
+              <Link href="/members" className="btn-light mt-3">
+                Explore Membership Benefits
+              </Link>
             </div>
 
             {/* Right Image with Overlay */}
@@ -242,11 +239,11 @@ export default function Home() {
                   src="/benefits.webp"
                   alt="Social Enterprise Ethiopia Members"
                   fill
-                  className="rounded-lg object-cover"
+                  className="rounded-2xl object-cover"
                 />
 
                 {/* Member Count Overlay Card */}
-                <div className="absolute bottom-4 left-4 rounded-lg bg-white p-4 shadow-lg">
+                <div className="absolute bottom-5 left-5 rounded-xl border border-line bg-white/95 px-6 py-4 shadow-lg backdrop-blur-sm">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary lg:text-3xl">
                       <CountUp target={members} suffix="+" />
@@ -262,19 +259,75 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-16">
+        <div className="site-container">
+          <div className="mb-8">
+            <h2 className="text-primary">Latest News &amp; Opportunities</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <article className="card card-interactive">
+              <h3 className="text-2xl text-primary">
+                AACOSE 9 comes to Addis Ababa
+              </h3>
+              <p className="text-foreground/80">
+                Explore the next AACOSE gathering, hosted by Social Enterprise
+                Ethiopia, on 17–18 March 2027.
+              </p>
+              <a
+                href="https://aacose.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-semibold"
+              >
+                Explore AACOSE
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </article>
+            <article className="card card-interactive">
+              <h3 className="text-2xl text-primary">
+                Knowledge, tools, and new possibilities
+              </h3>
+              <p className="text-foreground/80">
+                Explore publications, practical toolkits, research, grants,
+                calls for proposals, training, events, and partnership
+                opportunities.
+              </p>
+              <Link
+                href="/resources#news-and-opportunities"
+                className="inline-flex items-center gap-2 font-semibold"
+              >
+                Explore Resources &amp; Opportunities
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div className="site-container pb-16">
+        <Callout
+          title="Support Our Mission"
+          description="Your support helps build a stronger, more inclusive social enterprise ecosystem in Ethiopia."
+        >
+          <Link href="/donate" className="btn-light">
+            Ways to Support
+          </Link>
+          <Link href="/join" className="btn-outline-light">
+            Join Us
+          </Link>
+          <a href={contactUrl} className="btn-outline-light">
+            Partner With Us
+          </a>
+        </Callout>
+      </div>
+
       {/* Development Partners Section */}
       <section className="px-4 py-16">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
-              Development Partners
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-foreground/80">
-              We collaborate with leading organizations, government agencies,
-              and development partners to strengthen Ethiopia&apos;s social
-              enterprise ecosystem and create lasting impact.
-            </p>
-          </div>
+        <div className="site-container">
+          <SectionHeading
+            title="Development Partners"
+            centered
+            description="We collaborate with leading organizations, government agencies, and development partners to strengthen Ethiopia's social enterprise ecosystem and create lasting impact."
+          />
         </div>
 
         {/* Partner Logos Marquee */}
